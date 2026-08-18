@@ -19,7 +19,7 @@ import { addAlbumToQueue } from "./utils/tidal-search-albums";
 
 /**
  * SABnzbd-compatible API for Lidarr download client integration
- * Minimal implementation supporting: version, addurl, queue, history
+ * Minimal implementation supporting: version, get_config, get_cats, addurl, queue, history
  */
 
 /**

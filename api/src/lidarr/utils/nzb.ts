@@ -64,6 +64,22 @@ export function parseMultipartNzb(
 
 // Constants
 const SABNZBD_VERSION = "3.0.0";
+const SABNZBD_CATEGORIES = [
+  {
+    name: "music",
+    priority: 0,
+    pp: "3",
+    script: "None",
+    dir: "/downloads",
+  },
+  {
+    name: "*",
+    priority: 0,
+    pp: "3",
+    script: "None",
+    dir: "/downloads",
+  },
+];
 
 // Helper functions
 export function createNzoId(itemId: string): string {
@@ -221,33 +237,26 @@ export function handleVersionRequest(req: Request, res: Response) {
  * Required by Lidarr to validate the download client
  */
 export function handleGetConfigRequest(req: Request, res: Response) {
-  const musicDir = "/downloads";
-  const processingDir = "/downloads";
-
   res.json({
     config: {
       version: SABNZBD_VERSION,
-      categories: [
-        {
-          name: "music",
-          priority: 0,
-          pp: "3",
-          script: "None",
-          dir: musicDir,
-        },
-        {
-          name: "*",
-          priority: 0,
-          pp: "3",
-          script: "None",
-          dir: musicDir,
-        },
-      ],
+      categories: SABNZBD_CATEGORIES,
       misc: {
-        complete_dir: musicDir,
-        download_dir: processingDir,
+        complete_dir: "/downloads",
+        download_dir: "/downloads",
         api_key: "",
       },
     },
+  });
+}
+
+/**
+ * GET /api/sabnzbd/api?mode=get_cats
+ * Returns SABnzbd categories
+ */
+export function handleGetCatsRequest(req: Request, res: Response) {
+  res.json({
+    status: true,
+    categories: SABNZBD_CATEGORIES.map(({ name }) => name),
   });
 }

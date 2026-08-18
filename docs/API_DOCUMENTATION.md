@@ -900,6 +900,27 @@ curl "http://localhost:8484/api/sabnzbd/api?mode=addurl&name=https://listen.tida
 
 ---
 
+#### Get Categories
+
+```bash
+GET /api/sabnzbd/api?mode=get_cats
+```
+
+**Example:**
+```bash
+curl "http://localhost:8484/api/sabnzbd/api?mode=get_cats&apikey=your-api-key"
+```
+
+**Response:**
+```json
+{
+  "status": true,
+  "categories": ["music", "*"]
+}
+```
+
+---
+
 #### Get Queue
 
 ```bash
