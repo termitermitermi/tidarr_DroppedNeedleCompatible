@@ -240,6 +240,7 @@ Tidarr implements these SABnzbd-compatible endpoints:
 | ------------------------------------------------------------ | ------------------------------------------- | ----------------------- |
 | `GET /api/sabnzbd/api?mode=version`                          | Returns SABnzbd version (3.0.0)             | API key via query param |
 | `GET /api/sabnzbd/api?mode=get_config`                       | Returns downloader configuration            | API key via query param |
+| `GET /api/sabnzbd/api?mode=get_cats`                         | Returns available download categories       | API key via query param |
 | `POST /api/sabnzbd/api?mode=addfile`                         | Adds album to download queue via NZB upload | API key via query param |
 | `GET /api/sabnzbd/api?mode=queue`                            | Returns current download queue status       | API key via query param |
 | `GET /api/sabnzbd/api?mode=queue&name=delete&value=<nzo_id>` | Removes item from download queue            | API key via query param |

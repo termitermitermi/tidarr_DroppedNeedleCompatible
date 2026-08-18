@@ -223,31 +223,43 @@ export function handleVersionRequest(req: Request, res: Response) {
 export function handleGetConfigRequest(req: Request, res: Response) {
   const musicDir = "/downloads";
   const processingDir = "/downloads";
+  const categories = [
+    {
+      name: "music",
+      priority: 0,
+      pp: "3",
+      script: "None",
+      dir: musicDir,
+    },
+    {
+      name: "*",
+      priority: 0,
+      pp: "3",
+      script: "None",
+      dir: musicDir,
+    },
+  ];
 
   res.json({
     config: {
       version: SABNZBD_VERSION,
-      categories: [
-        {
-          name: "music",
-          priority: 0,
-          pp: "3",
-          script: "None",
-          dir: musicDir,
-        },
-        {
-          name: "*",
-          priority: 0,
-          pp: "3",
-          script: "None",
-          dir: musicDir,
-        },
-      ],
+      categories,
       misc: {
         complete_dir: musicDir,
         download_dir: processingDir,
         api_key: "",
       },
     },
+  });
+}
+
+/**
+ * GET /api/sabnzbd?mode=get_cats
+ * Returns SABnzbd categories
+ */
+export function handleGetCatsRequest(req: Request, res: Response) {
+  res.json({
+    status: true,
+    categories: ["music", "*"],
   });
 }

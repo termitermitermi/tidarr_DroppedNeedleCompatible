@@ -13,6 +13,7 @@ import {
   handleSearchRequest,
 } from "../lidarr/indexer";
 import {
+  handleGetCatsRequest,
   handleGetConfigRequest,
   handleVersionRequest,
 } from "../lidarr/utils/nzb";
@@ -78,6 +79,9 @@ const handleSabnzbdRequest = async (req: Request, res: Response) => {
       case "get_config":
         return handleGetConfigRequest(req, res);
 
+      case "get_cats":
+        return handleGetCatsRequest(req, res);
+
       case "addurl":
       case "addfile":
         return await handleAddUrlRequest(req, res);
@@ -91,7 +95,7 @@ const handleSabnzbdRequest = async (req: Request, res: Response) => {
       default:
         return res.status(400).json({
           error:
-            "Invalid mode. Supported: version, get_config, addurl, addfile, queue, history",
+            "Invalid mode. Supported: version, get_config, get_cats, addurl, addfile, queue, history",
         });
     }
   } catch (error) {
